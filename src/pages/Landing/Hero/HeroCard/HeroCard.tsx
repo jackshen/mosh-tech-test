@@ -104,6 +104,14 @@ const Options = styled.ul`
   }
 `;
 
+const StyledAccordion = styled(Accordion)`
+  margin-bottom: 8px;
+
+  @media (min-width: ${(props) => props.theme.size.xs}) {
+    margin-bottom: 0px;
+  }
+`;
+
 const StyledButton = styled(Button)<StyledButtonProps>`
   width: ${(props) => (props.fullWidth ? "100%" : "220px")};
 `;
@@ -135,8 +143,8 @@ const HeroCard = ({ ctaLink, ctaText, header, options, image, imageAlt }: HeroCa
   return (
     <HeroCardContainer>
       {shouldShowAccordion ? (
-        <HeroCardAccordionContainer id="HeroCardAccordionContainer">
-          <Accordion
+        <HeroCardAccordionContainer>
+          <StyledAccordion
             header={
               <HeroCardHeader>
                 <HeroCardImage alt={imageAlt} src={image} />
@@ -145,7 +153,7 @@ const HeroCard = ({ ctaLink, ctaText, header, options, image, imageAlt }: HeroCa
             }
           >
             {heroCardOptions}
-          </Accordion>
+          </StyledAccordion>
           <StyledButton fullWidth label={ctaText} onClick={handleClick} />
         </HeroCardAccordionContainer>
       ) : (
